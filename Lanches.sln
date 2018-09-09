@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lanches.domain", "lanches.domain\lanches.domain.csproj", "{65B88184-1381-4830-BA36-E48DF9B17101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lanches.console", "lanches.console\lanches.console.csproj", "{A7F01379-A1F2-4E40-9B15-F46C6FD168E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lanches.api", "lanches.api\lanches.api.csproj", "{5EF904D3-0BFA-40E3-BA39-D4BD10FE0136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{65B88184-1381-4830-BA36-E48DF9B17101}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B88184-1381-4830-BA36-E48DF9B17101}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B88184-1381-4830-BA36-E48DF9B17101}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7F01379-A1F2-4E40-9B15-F46C6FD168E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7F01379-A1F2-4E40-9B15-F46C6FD168E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7F01379-A1F2-4E40-9B15-F46C6FD168E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7F01379-A1F2-4E40-9B15-F46C6FD168E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EF904D3-0BFA-40E3-BA39-D4BD10FE0136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EF904D3-0BFA-40E3-BA39-D4BD10FE0136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EF904D3-0BFA-40E3-BA39-D4BD10FE0136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EF904D3-0BFA-40E3-BA39-D4BD10FE0136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
