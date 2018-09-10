@@ -2,8 +2,8 @@
 {
     public enum PedidoStatusEnum
     {
+        Cancelado,
         Finalizado,
-        Pendente,
-        Cancelado
+        Pendente
     }
 }
