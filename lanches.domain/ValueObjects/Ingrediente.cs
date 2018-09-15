@@ -1,5 +1,6 @@
 ﻿namespace lanches.domain.ValueObjects
 {
+
     public class Ingrediente
     {
         public Ingrediente(string nome, decimal valor)

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace lanches.api
 {
@@ -26,21 +21,58 @@ namespace lanches.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("LanchesDDD", new Info
+                {
+                    Version = "v1",
+                    Title = "Lanches DDD",
+                    Description = "API para gerenciamento de Lanches"
+                });
+
+                //Set the comments path for the Swagger JSON and UI.
+
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(System.AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
+                c.CustomSchemaIds(custom =>
+                {
+                    if (custom.Name == "IngredienteRequest")
+                        return "Ingrediente";
+
+                    return custom.Name;
+                });
+
+                c.UseReferencedDefinitionsForEnums ();
+                //c.EnableAnnotations();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "docs/{documentName}/api.json";
+            });
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/docs/LanchesDDD/api.json", "Lanches DDD");
+                c.RoutePrefix = "docs";
+                c.InjectStylesheet("/swagger-ui/custom.css");
+            });
+
+            app.UseCors();
             app.UseMvc();
         }
     }

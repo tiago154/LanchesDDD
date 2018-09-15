@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>lanches.api</name>
+    </assembly>
+    <members>
+        <member name="M:lanches.api.Controllers.IngredienteController.Get">
+            <summary>
+            Get
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
