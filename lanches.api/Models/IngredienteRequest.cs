@@ -1,4 +1,6 @@
-﻿namespace lanches.api.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace lanches.api.Models
 {
     public class IngredienteRequest
     {

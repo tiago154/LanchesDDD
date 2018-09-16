@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
+using System.Reflection;
+using System.Text;
 
 namespace lanches.api
 {
@@ -33,7 +35,7 @@ namespace lanches.api
 
                 //Set the comments path for the Swagger JSON and UI.
 
-                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(System.AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
 
@@ -45,7 +47,7 @@ namespace lanches.api
                     return custom.Name;
                 });
 
-                c.UseReferencedDefinitionsForEnums ();
+                c.UseReferencedDefinitionsForEnums();
                 //c.EnableAnnotations();
             });
         }
@@ -67,9 +69,14 @@ namespace lanches.api
 
             app.UseSwaggerUI(c =>
             {
+                c.DocumentTitle = "Lanches DDD - Docs";
                 c.SwaggerEndpoint("/docs/LanchesDDD/api.json", "Lanches DDD");
                 c.RoutePrefix = "docs";
                 c.InjectStylesheet("/swagger-ui/custom.css");
+
+                var pathIndex = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/swagger-ui/index.html");
+                c.IndexStream = () => new StreamReader(pathIndex).BaseStream;
+
             });
 
             app.UseCors();
