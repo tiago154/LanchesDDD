@@ -1,11 +1,8 @@
-﻿using lanches.domain.Entities.Base;
-using lanches.domain.Resources;
-using lanches.domain.ValueObjects;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace lanches.domain.Entities
 {
-    public class Lanche : EntityBase
+    public class Lanche
     {
         public Lanche(string nome, IList<Ingrediente> ingredientes, decimal valor, Promocao promocao = null)
         {
@@ -26,20 +23,20 @@ namespace lanches.domain.Entities
 
         private void ValidarNome()
         {
-            if (Nome.Length < 5)
-                Notificacoes.AdicionarNotificacao("Lanche.ValidarNome", LancheResource.NomeMinimo);
+            //if (Nome.Length < 5)
+            //    Notificacoes.AdicionarNotificacao("Lanche.ValidarNome", LancheResource.NomeMinimo);
         }
 
         private void ValidarValor()
         {
-            if (Valor < 1)
-                Notificacoes.AdicionarNotificacao("Lanche.ValidarValor", LancheResource.ValorMinimo);
+            //if (Valor < 1)
+            //    Notificacoes.AdicionarNotificacao("Lanche.ValidarValor", LancheResource.ValorMinimo);
         }
 
         private void ValidarQtdIngredientes()
         {
-            if (Ingredientes.Count == 0)
-                Notificacoes.AdicionarNotificacao("Lanche.ValidarQtdIngredientes", LancheResource.SemIngredientes);
+            //if (Ingredientes.Count == 0)
+            //    Notificacoes.AdicionarNotificacao("Lanche.ValidarQtdIngredientes", LancheResource.SemIngredientes);
         }
 
         public string Nome { get; private set; }

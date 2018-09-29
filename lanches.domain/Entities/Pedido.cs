@@ -1,13 +1,11 @@
-﻿using lanches.domain.Entities.Base;
-using lanches.domain.Enums;
-using lanches.domain.Resources;
+﻿using lanches.crosscuting.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace lanches.domain.Entities
 {
-    public class Pedido : EntityBase
+    public class Pedido
     {
         public Pedido(IList<Lanche> lanches)
         {
@@ -16,10 +14,6 @@ namespace lanches.domain.Entities
             Total = lanches.Sum(l => l.Valor);
 
             Validacao();
-
-            foreach (var lanche in Lanches)
-                Notificacoes.AdicionarNotificacoes(lanche.Notificacoes);
-
         }
 
         private void Validacao()
@@ -30,17 +24,17 @@ namespace lanches.domain.Entities
 
         private void ValidarQtdLanches()
         {
-            if (Lanches.Count == 0)
-                Notificacoes.AdicionarNotificacao("Pedido.ValidarQtdLanches", PedidoResource.SemLanches);
+            //if (Lanches.Count == 0)
+            //    Notificacoes.AdicionarNotificacao("Pedido.ValidarQtdLanches", PedidoResource.SemLanches);
         }
 
         private void ValidarTotalValor()
         {
-            if (Total == 0)
-                Notificacoes.AdicionarNotificacao("Pedido.ValidarTotalValor", PedidoResource.ValorZerado);
+            //if (Total == 0)
+            //    Notificacoes.AdicionarNotificacao("Pedido.ValidarTotalValor", PedidoResource.ValorZerado);
         }
 
-        public PedidoStatusEnum Status { get; private set; } = PedidoStatusEnum.Pendente;
+        public PedidoStatusEnum Status { get; private set; }
         public DateTime Data { get; private set; }
         public IList<Lanche> Lanches { get; private set; }
         public decimal Total { get; private set; }

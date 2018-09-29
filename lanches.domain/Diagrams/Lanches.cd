@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical">
+<ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="lanches.domain.Entities.Lanche">
-    <Position X="6" Y="0.5" Width="1.5" />
+    <Position X="4.5" Y="3.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAGAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAEAAAAAAAAgAAGAAAAAAAAAAAAACEAABA=</HashCode>
       <FileName>Entities\Lanche.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -13,54 +13,29 @@
       <Property Name="Ingredientes" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="lanches.domain.ValueObjects.Ingrediente">
-    <Position X="3.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>ValueObjects\Ingrediente.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="lanches.domain.Entities.Pedido">
-    <Position X="7.75" Y="2.75" Width="1.5" />
+    <Position X="4.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAQBAAAAgAAAAAAAA=</HashCode>
+      <HashCode>AAAAAQAEAAAEAAAAAAAAAAAAAAAAQBAAAAgAAAAAACA=</HashCode>
       <FileName>Entities\Pedido.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Status" />
-    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Lanches" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="lanches.domain.Entities.Promocao">
-    <Position X="0.5" Y="4" Width="1.5" />
+    <Position X="8.75" Y="3.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAACAAAAAAgAAAAQAAAAAAAAAAEAAAQ=</HashCode>
       <FileName>Entities\Promocao.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="ACada" />
-      <Property Name="Tipo" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="DeveConter" />
-      <Property Name="NaoDeveConter" />
-    </ShowAsCollectionAssociation>
   </Class>
-  <Enum Name="lanches.domain.Enums.PromocaoTipoEnum" Collapsed="true">
-    <Position X="8.25" Y="5" Width="1.5" />
+  <Class Name="lanches.domain.Entities.Ingrediente">
+    <Position X="0.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
-      <FileName>Enums\PromocaoTipoEnum.cs</FileName>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Entities\Ingrediente.cs</FileName>
     </TypeIdentifier>
-  </Enum>
-  <Enum Name="lanches.domain.Enums.PedidoStatusEnum" Collapsed="true">
-    <Position X="9" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
-      <FileName>Enums\PedidoStatusEnum.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

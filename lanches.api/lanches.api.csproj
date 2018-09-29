@@ -27,14 +27,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\lanches.domain\lanches.domain.csproj" />
+    <ProjectReference Include="..\lanches.ioc\lanches.ioc.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Update="wwwroot\swagger-ui\custom.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\swagger-ui\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

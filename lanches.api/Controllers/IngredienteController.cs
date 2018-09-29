@@ -1,4 +1,4 @@
-﻿using lanches.api.Models;
+﻿using lanches.crosscuting.Arguments.Ingredientes;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -13,33 +13,15 @@ namespace lanches.api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ApiExplorerSettings(GroupName = "Ingredientes")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Ingrediente/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST: api/Ingrediente
         [HttpPost]
         public void Post([FromBody] IngredienteRequest ingrediente)
-        {
-        }
-
-        // PUT: api/Ingrediente/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }

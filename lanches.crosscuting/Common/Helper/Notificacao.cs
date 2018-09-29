@@ -1,4 +1,4 @@
-﻿namespace lanches.crosscuting.Helper
+﻿namespace lanches.crosscuting.Common.Helper
 {
     public class Notificacao
     {

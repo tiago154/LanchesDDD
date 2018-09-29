@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace lanches.domain.Resources {
+namespace lanches.crosscuting.Common.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace lanches.domain.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class LancheResource {
+    public class PedidoResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LancheResource() {
+        internal PedidoResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace lanches.domain.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("lanches.domain.Resources.LancheResource", typeof(LancheResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("lanches.crosscuting.Common.Resources.PedidoResource", typeof(PedidoResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace lanches.domain.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O nome do lanche deve conter pelo menos 5 caracteres.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O pedido deve conter pelo menos 1 lanche.
         /// </summary>
-        public static string NomeMinimo {
+        public static string SemLanches {
             get {
-                return ResourceManager.GetString("NomeMinimo", resourceCulture);
+                return ResourceManager.GetString("SemLanches", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O lanche deve conter pelo menos 1 ingrediente.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O pedido deve possuir um valor maior que zero.
         /// </summary>
-        public static string SemIngredientes {
+        public static string ValorZerado {
             get {
-                return ResourceManager.GetString("SemIngredientes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O valor do lanche deve ser maior que 1.
-        /// </summary>
-        public static string ValorMinimo {
-            get {
-                return ResourceManager.GetString("ValorMinimo", resourceCulture);
+                return ResourceManager.GetString("ValorZerado", resourceCulture);
             }
         }
     }

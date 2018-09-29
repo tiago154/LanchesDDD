@@ -1,4 +1,4 @@
-﻿namespace lanches.domain.Enums
+﻿namespace lanches.crosscuting.Enums
 {
     public enum PedidoStatusEnum
     {

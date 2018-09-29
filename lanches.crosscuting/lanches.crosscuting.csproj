@@ -5,7 +5,40 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ExtensionMethods\" />
+    <Folder Include="Common\ExtensionMethods\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Common\Resources\IngredienteResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IngredienteResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Common\Resources\LancheResource.Designer.cs">
+      <DependentUpon>LancheResource.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Common\Resources\PedidoResource.Designer.cs">
+      <DependentUpon>PedidoResource.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Common\Resources\IngredienteResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IngredienteResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Common\Resources\LancheResource.resx">
+      <LastGenOutput>LancheResource.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Common\Resources\PedidoResource.resx">
+      <LastGenOutput>PedidoResource.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

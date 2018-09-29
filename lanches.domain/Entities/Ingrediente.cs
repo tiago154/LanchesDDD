@@ -1,4 +1,4 @@
-﻿namespace lanches.domain.ValueObjects
+﻿namespace lanches.domain.Entities
 {
 
     public class Ingrediente
@@ -9,6 +9,7 @@
             Valor = valor;
         }
 
+        public string Id { get; private set; }
         public string Nome { get; private set; }
         public decimal Valor { get; private set; }
     }

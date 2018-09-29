@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Tests", "6 - Tests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lanches.crosscuting", "lanches.crosscuting\lanches.crosscuting.csproj", "{424BA8E7-2AD6-4D15-BF9D-2E3236D0FF6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lanches.tests.domain", "lanches.tests.domain\lanches.tests.domain.csproj", "{70E0CA88-B473-4A95-A647-B564837F81FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lanches.tests.domain", "lanches.tests.domain\lanches.tests.domain.csproj", "{70E0CA88-B473-4A95-A647-B564837F81FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lanches.ioc", "lanches.ioc\lanches.ioc.csproj", "{97107338-0768-4D66-BD53-CD4E9E4B8183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{70E0CA88-B473-4A95-A647-B564837F81FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E0CA88-B473-4A95-A647-B564837F81FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E0CA88-B473-4A95-A647-B564837F81FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97107338-0768-4D66-BD53-CD4E9E4B8183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97107338-0768-4D66-BD53-CD4E9E4B8183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97107338-0768-4D66-BD53-CD4E9E4B8183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97107338-0768-4D66-BD53-CD4E9E4B8183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{5EF904D3-0BFA-40E3-BA39-D4BD10FE0136} = {A31DE62A-6D48-49F4-8152-1BF5AC1DC7DB}
 		{424BA8E7-2AD6-4D15-BF9D-2E3236D0FF6C} = {6C8C78EF-5F8B-45F7-A85B-5E6D38806416}
 		{70E0CA88-B473-4A95-A647-B564837F81FE} = {10F7F18B-81A4-4DC6-AFB2-F8AED7CB0E58}
+		{97107338-0768-4D66-BD53-CD4E9E4B8183} = {6C8C78EF-5F8B-45F7-A85B-5E6D38806416}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C954E50-5F49-48E7-AAC6-81D9F5B3DC39}

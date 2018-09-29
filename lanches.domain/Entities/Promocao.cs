@@ -1,11 +1,9 @@
-﻿using lanches.domain.Entities.Base;
-using lanches.domain.Enums;
-using lanches.domain.ValueObjects;
+﻿using lanches.crosscuting.Enums;
 using System.Collections.Generic;
 
 namespace lanches.domain.Entities
 {
-    public class Promocao : EntityBase
+    public class Promocao
     {
         public Promocao(string nome, PromocaoTipoEnum tipo, IList<Ingrediente> deveConter, IList<Ingrediente> naoDeveConter)
         {

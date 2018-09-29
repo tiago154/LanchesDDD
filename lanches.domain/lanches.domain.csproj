@@ -5,36 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Applications\" />
     <Folder Include="Interfaces\Repositories\" />
+    <Folder Include="ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\lanches.crosscuting\lanches.crosscuting.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources\LancheResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LancheResource.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\PedidoResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>PedidoResource.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\LancheResource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LancheResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\PedidoResource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PedidoResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
