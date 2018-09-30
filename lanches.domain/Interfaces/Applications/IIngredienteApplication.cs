@@ -5,7 +5,9 @@ namespace lanches.domain.Interfaces.Applications
 {
     public interface IIngredienteApplication
     {
-        void InserirIngrediente(IngredienteRequest ingredienteRequest);
-        IList<IngredienteResponse> RetornaIngredientes();
+        void Inserir(IngredienteRequest ingredienteRequest);
+        void Atualizar(string id, IngredienteRequest ingredienteRequest);
+        void Remover(string id);
+        IList<IngredienteResponse> ListarTodos();
     }
 }

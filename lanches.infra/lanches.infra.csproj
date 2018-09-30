@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ValueObjects\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\lanches.crosscuting\lanches.crosscuting.csproj" />
+    <ProjectReference Include="..\lanches.domain\lanches.domain.csproj" />
   </ItemGroup>
 
 </Project>

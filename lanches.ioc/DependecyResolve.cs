@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using lanches.application;
+using lanches.domain.Interfaces.Applications;
+using lanches.domain.Interfaces.Repositories;
+using lanches.infra;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
@@ -12,7 +16,11 @@ namespace lanches.ioc
         public static void ConfigureServices(IServiceCollection services)
         {
             #region Applications
+            services.AddScoped<IIngredienteApplication, IngredienteApplication>();
+            #endregion
 
+            #region Repositories
+            services.AddScoped<IIngredienteRepository, IngredienteRepository>();
             #endregion
 
             #region Swagger
@@ -35,6 +43,8 @@ namespace lanches.ioc
                 {
                     if (custom.Name == "IngredienteRequest")
                         return "Ingrediente";
+                    if (custom.Name == "IngredienteResponse")
+                        return "Ingrediente Retorno";
 
                     return custom.Name;
                 });
@@ -43,7 +53,6 @@ namespace lanches.ioc
                 c.MapType<DateTime>(() => new Schema { Type = "date", Format = "date", Example = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") });
             });
             #endregion
-
         }
 
         public static void Configure(IApplicationBuilder app, IHostingEnvironment env)

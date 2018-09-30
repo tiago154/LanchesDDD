@@ -6,9 +6,38 @@
     <members>
         <member name="M:lanches.api.Controllers.IngredienteController.Get">
             <summary>
-            Get
+            Retorna todos os ingredientes
             </summary>
-            <returns></returns>
+            <response code="200">Sucesso</response>
+            <response code="204">Sem conteúdo</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:lanches.api.Controllers.IngredienteController.Post(lanches.crosscuting.Arguments.Ingredientes.IngredienteRequest)">
+            <summary>
+            Adiciona um novo ingrediente
+            </summary>
+            <param name="ingrediente">Ingrediente</param>
+            <response code="201">Criado</response>
+            <response code="400">Requisição inválida</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:lanches.api.Controllers.IngredienteController.Put(System.String,lanches.crosscuting.Arguments.Ingredientes.IngredienteRequest)">
+            <summary>
+            Atualiza um ingrediente
+            </summary>
+            <param name="ingrediente">Ingrediente</param>
+            <param name="id">Identificador do ingrediente</param>
+            <response code="200">Sucesso</response>
+            <response code="400">Requisição inválida</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:lanches.api.Controllers.IngredienteController.Delete(System.String)">
+            <summary>
+            Remove um ingrediente
+            </summary>
+            <param name="id">Identificador do ingrediente</param>
+            <response code="200">Sucesso</response>
+            <response code="500">Erro interno</response>
         </member>
     </members>
 </doc>
