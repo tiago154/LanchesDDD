@@ -2,12 +2,20 @@
 using lanches.domain.Interfaces.Applications;
 using lanches.domain.Interfaces.Repositories;
 using lanches.infra;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace lanches.ioc
 {
@@ -15,6 +23,29 @@ namespace lanches.ioc
     {
         public static void ConfigureServices(IServiceCollection services)
         {
+            #region Auten
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "https://localhost:44388",
+                        ValidAudience = "https://localhost:44388",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("231qw32e15sa64d5sa6456wqe132wq1e32qw132qew132"))
+                    };
+                });
+
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
+
             #region Applications
             services.AddScoped<IIngredienteApplication, IngredienteApplication>();
             #endregion
@@ -51,6 +82,23 @@ namespace lanches.ioc
 
                 // Customiza o tipo da variavel e o exemplo da mesma
                 c.MapType<DateTime>(() => new Schema { Type = "date", Format = "date", Example = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") });
+
+                var security = new Dictionary<string, IEnumerable<string>>
+                {
+                    {"Bearer", new string[] { }},
+                };
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+
+                c.AddSecurityRequirement(security);
+
+                //c.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
             });
             #endregion
         }
@@ -69,6 +117,31 @@ namespace lanches.ioc
                 c.RoutePrefix = "docs";
                 c.InjectStylesheet("/swagger-ui/custom.css");
             });
+        }
+
+        public class AuthorizationHeaderParameterOperationFilter : IOperationFilter
+        {
+            public void Apply(Operation operation, OperationFilterContext context)
+            {
+                var filterPipeline = context.ApiDescription.ActionDescriptor.FilterDescriptors;
+                var isAuthorized = filterPipeline.Select(filterInfo => filterInfo.Filter).Any(filter => filter is AuthorizeFilter);
+                var allowAnonymous = filterPipeline.Select(filterInfo => filterInfo.Filter).Any(filter => filter is IAllowAnonymousFilter);
+
+                if (isAuthorized && !allowAnonymous)
+                {
+                    if (operation.Parameters == null)
+                        operation.Parameters = new List<IParameter>();
+
+                    operation.Parameters.Add(new NonBodyParameter
+                    {
+                        Name = "Authorization",
+                        In = "header",
+                        Description = "Token",
+                        Required = true,
+                        Type = "string"
+                    });
+                }
+            }
         }
     }
 }

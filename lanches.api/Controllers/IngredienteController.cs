@@ -1,5 +1,6 @@
 ﻿using lanches.crosscuting.Arguments.Ingredientes;
 using lanches.domain.Interfaces.Applications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -9,6 +10,7 @@ namespace lanches.api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
+    [Authorize("Bearer")]
     public class IngredienteController : ControllerBase
     {
         private readonly IIngredienteApplication _ingredienteApplication;
@@ -31,6 +33,7 @@ namespace lanches.api.Controllers
         {
             try
             {
+                var asdasd = User;
                 var ingredientes = _ingredienteApplication.ListarTodos();
 
                 if (ingredientes.Count > 0)
