@@ -19,11 +19,11 @@ namespace lanches.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            DependecyResolve.ConfigureServices(services);
-
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(options => { options.SerializerSettings.DateFormatString = "dd/MM/yyyy HH:mm:ss"; });
+
+            DependecyResolve.ConfigureServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,12 +34,12 @@ namespace lanches.api
             else
                 app.UseHsts();
 
-            DependecyResolve.Configure(app, env);
-
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseCors();
             app.UseMvc();
+
+            DependecyResolve.Configure(app, env);
         }
     }
 }

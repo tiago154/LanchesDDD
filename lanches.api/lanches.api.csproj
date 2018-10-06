@@ -34,9 +34,6 @@
     <Content Update="wwwroot\swagger-ui\custom.css">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\swagger-ui\index.html">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>

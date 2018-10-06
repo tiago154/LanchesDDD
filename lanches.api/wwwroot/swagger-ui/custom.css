@@ -1,3 +1,24 @@
 ﻿.swagger-ui .topbar {
     background-color: #0094ff;
 }
+
+.topbar-wrapper .link * {
+    display: none;
+}
+
+.topbar-wrapper .link {
+    width: 99px !important;
+    height: 38px;
+    background: url(http://pngimage.net/wp-content/uploads/2018/06/png-lanches-2.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}
+
+#swagger-ui > section > div.topbar > div > div > form > label > span {
+    display: none;
+}
+
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border: 2px solid #205fa3 !important;
+}

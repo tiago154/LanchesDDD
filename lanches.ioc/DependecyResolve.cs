@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Driver;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
@@ -23,7 +24,7 @@ namespace lanches.ioc
     {
         public static void ConfigureServices(IServiceCollection services)
         {
-            #region Auten
+            #region Autentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -46,8 +47,33 @@ namespace lanches.ioc
                     .RequireAuthenticatedUser().Build());
             });
 
+            #endregion
+
             #region Applications
             services.AddScoped<IIngredienteApplication, IngredienteApplication>();
+            #endregion
+
+            #region Infra
+            services.AddScoped<IIngredienteRepository, IngredienteRepository>();
+        
+            services.AddSingleton(provider =>
+            {
+                var MongoConfig = _configApp.MongoDb;
+                return new MongoClientSettings
+                {
+                    MinConnectionPoolSize = MongoConfig.MinConnectionPoolSize,
+                    MaxConnectionPoolSize = MongoConfig.MaxConnectionPoolSize,
+                    Server = new MongoServerAddress(MongoConfig.Host, MongoConfig.Port),
+                    Credential = MongoCredential.CreateCredential(MongoConfig.AuthenticationDatabase, MongoConfig.User, MongoConfig.Password)
+                };
+            });
+
+            services.AddSingleton<IMongoClient>(provider => new MongoClient(provider.GetService<MongoClientSettings>()));
+            services.AddSingleton(provider =>
+            {
+                var database = provider.GetService<IMongoClient>().GetDatabase(_configApp.MongoDb.AuthenticationDatabase);
+                return database;
+            });
             #endregion
 
             #region Repositories
