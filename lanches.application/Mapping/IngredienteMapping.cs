@@ -16,7 +16,7 @@ namespace lanches.application.Mapping
 
         public static IngredienteCollection ConverteParaIngredienteCollection(Ingrediente ingrediente) => new IngredienteCollection
         {
-            Id = ObjectId.Parse(ingrediente.Id),
+            Id = !string.IsNullOrEmpty(ingrediente.Id) ? ObjectId.Parse(ingrediente.Id) : ObjectId.Empty,
             Nome = ingrediente.Nome,
             Valor = ingrediente.Valor
         };

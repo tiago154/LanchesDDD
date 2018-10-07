@@ -12,7 +12,7 @@ COPY --from=build /lanches.api/Project ./app
 
 WORKDIR /app
 
-ENV TZ=America/Sao_Paulo
+ENV TZ=America/Sao_Paulo ASPNETCORE_ENVIRONMENT=staging
 
 RUN echo 'America/Sao_Paulo' > /etc/timezone
 
