@@ -1,4 +1,5 @@
 ﻿using lanches.application;
+using lanches.crosscuting.Common.Configs;
 using lanches.domain.Interfaces.Applications;
 using lanches.domain.Interfaces.Repositories;
 using lanches.infra;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
@@ -22,8 +24,28 @@ namespace lanches.ioc
 {
     public class DependecyResolve
     {
+        public static ConfigApp StartUp()
+        {
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "staging";
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile($"appsettings.{environmentName}.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            var configuration = new ConfigApp();
+
+            ConfigurationBinder.Bind(builder.Build(), configuration);
+            configuration.Environment = environmentName;
+
+            return configuration;
+        }
+
         public static void ConfigureServices(IServiceCollection services)
         {
+            var configApp = StartUp();
+            services.AddSingleton(configApp);
+
             #region Autentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -34,9 +56,9 @@ namespace lanches.ioc
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = "https://localhost:44388",
-                        ValidAudience = "https://localhost:44388",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("231qw32e15sa64d5sa6456wqe132wq1e32qw132qew132"))
+                        ValidIssuer = configApp.JwtAuth.Issuer,
+                        ValidAudience = configApp.JwtAuth.Audience,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configApp.JwtAuth.Key))
                     };
                 });
 
@@ -55,10 +77,10 @@ namespace lanches.ioc
 
             #region Infra
             services.AddScoped<IIngredienteRepository, IngredienteRepository>();
-        
+
             services.AddSingleton(provider =>
             {
-                var MongoConfig = _configApp.MongoDb;
+                var MongoConfig = configApp.MongoDb;
                 return new MongoClientSettings
                 {
                     MinConnectionPoolSize = MongoConfig.MinConnectionPoolSize,
@@ -71,7 +93,7 @@ namespace lanches.ioc
             services.AddSingleton<IMongoClient>(provider => new MongoClient(provider.GetService<MongoClientSettings>()));
             services.AddSingleton(provider =>
             {
-                var database = provider.GetService<IMongoClient>().GetDatabase(_configApp.MongoDb.AuthenticationDatabase);
+                var database = provider.GetService<IMongoClient>().GetDatabase(configApp.MongoDb.AuthenticationDatabase);
                 return database;
             });
             #endregion

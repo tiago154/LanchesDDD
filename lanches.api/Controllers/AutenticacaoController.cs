@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using lanches.crosscuting.Common.Configs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -12,6 +13,13 @@ namespace lanches.api.Controllers
     [ApiController]
     public class AutenticacaoController : ControllerBase
     {
+        private readonly ConfigApp _configApp;
+
+        public AutenticacaoController(ConfigApp configApp)
+        {
+            _configApp = configApp;
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public IActionResult Post(LoginModel login)
@@ -26,15 +34,17 @@ namespace lanches.api.Controllers
         }
         private string BuildToken(UserModel user)
         {
-            var identity = new[] {
-                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                        new Claim("teste", "testeClaim")
-                    };
+            var identity = new[] 
+            {
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
+                new Claim("teste", "testeClaim")
+            };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("231qw32e15sa64d5sa6456wqe132wq1e32qw132qew132"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configApp.JwtAuth.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken("https://localhost:44388",
-                "https://localhost:44388",
+            var token = new JwtSecurityToken(
+                _configApp.JwtAuth.Issuer,
+                _configApp.JwtAuth.Audience,
                 claims: identity,
                 expires: DateTime.Now.AddHours(30),
                 signingCredentials: creds

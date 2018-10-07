@@ -15,6 +15,20 @@
     <ApplicationIcon />
     <Win32Resource />
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Remove="appsettings.production.json" />
+    <Content Remove="appsettings.staging.json" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="appsettings.production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="appsettings.staging.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

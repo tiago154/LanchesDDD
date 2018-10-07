@@ -21,7 +21,11 @@ namespace lanches.application
             try
             {
                 var ingrediente = new Ingrediente(ingredienteRequest, id);
-                _ingredienteRepository.Atualizar(ingrediente);
+
+                //if validando notificação
+                var ingredienteCollection = IngredienteMapping.ConverteParaIngredienteCollection(ingrediente);
+
+                _ingredienteRepository.Atualizar(ingredienteCollection);
             }
             catch (System.Exception)
             {
@@ -34,7 +38,9 @@ namespace lanches.application
             try
             {
                 var ingrediente = new Ingrediente(ingredienteRequest);
-                _ingredienteRepository.Inserir(ingrediente);
+                //if validando notificação
+                var ingredienteCollection = IngredienteMapping.ConverteParaIngredienteCollection(ingrediente);
+                _ingredienteRepository.Inserir(ingredienteCollection);
             }
             catch (System.Exception)
             {
@@ -48,10 +54,10 @@ namespace lanches.application
             {
                 var ingredientesResponse = new List<IngredienteResponse>();
 
-                var ingredientes = _ingredienteRepository.ListarTodos();
+                var ingredientesCollection = _ingredienteRepository.ListarTodos();
 
-                foreach (var ingrediente in ingredientes)
-                    ingredientesResponse.Add(IngredienteMapping.Response(ingrediente));
+                foreach (var ingredienteCollection in ingredientesCollection)
+                    ingredientesResponse.Add(IngredienteMapping.ConverteParaIngredienteResponse(ingredienteCollection));
 
                 return ingredientesResponse;
             }

@@ -1,13 +1,13 @@
-﻿using lanches.domain.Entities;
+﻿using lanches.crosscuting.Models.Mongo;
 using System.Collections.Generic;
 
 namespace lanches.domain.Interfaces.Repositories
 {
     public interface IIngredienteRepository
     {
-        void Inserir(Ingrediente ingrediente);
-        void Atualizar(Ingrediente ingrediente);
+        string Inserir(IngredienteCollection ingrediente);
+        void Atualizar(IngredienteCollection ingrediente);
         void Remover(string id);
-        IList<Ingrediente> ListarTodos();
+        IList<IngredienteCollection> ListarTodos();
     }
 }

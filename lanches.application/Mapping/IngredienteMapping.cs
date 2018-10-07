@@ -1,13 +1,22 @@
 ﻿using lanches.crosscuting.Arguments.Ingredientes;
+using lanches.crosscuting.Models.Mongo;
 using lanches.domain.Entities;
+using MongoDB.Bson;
 
 namespace lanches.application.Mapping
 {
     public class IngredienteMapping
     {
-        public static IngredienteResponse Response(Ingrediente ingrediente) => new IngredienteResponse
+        public static IngredienteResponse ConverteParaIngredienteResponse(IngredienteCollection ingredienteCollection) => new IngredienteResponse
         {
-            Id = ingrediente.Id,
+            Id = ingredienteCollection.Id.ToString(),
+            Nome = ingredienteCollection.Nome,
+            Valor = ingredienteCollection.Valor
+        };
+
+        public static IngredienteCollection ConverteParaIngredienteCollection(Ingrediente ingrediente) => new IngredienteCollection
+        {
+            Id = ObjectId.Parse(ingrediente.Id),
             Nome = ingrediente.Nome,
             Valor = ingrediente.Valor
         };
